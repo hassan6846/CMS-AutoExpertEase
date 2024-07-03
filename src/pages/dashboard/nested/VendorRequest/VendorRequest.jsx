@@ -5,10 +5,11 @@ import { Avatar, Button, Modal } from '@mui/material';
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-
+ApiInstance
 //css
 import "./VendorRequest.css"
 import axios from 'axios';
+import ApiInstance from '../../../../../Instance/AxiosInstance';
 const VendorRequest = () => {
   const [openModal, setopenModal] = useState(false)
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -19,7 +20,7 @@ const VendorRequest = () => {
   const approveRequest = async (userId) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:4001/api/admin/vendor-applications/approve', {
+      const response = await axios.post("https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/vendor-applications/approve", {
         id: userId
       });
       console.log(response.data);
@@ -37,7 +38,7 @@ const VendorRequest = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/admin/vendor-applications');
+        const response = await axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/vendor-applications');
         console.log(response.data);
         setApplications(response.data);
       } catch (error) {
@@ -79,7 +80,7 @@ const VendorRequest = () => {
 
               <div className='TextContainerRequests'>
                 <Avatar style={{ marginRight: '5px' }} src={application.avatar} />
-                <div>  <p><span style={{ fontWeight: "bold", marginBottom: 0,padding:0,margin:0 }}>Hassan Shehriyar </span>applied for vendorShip on the app shopname {""}{application.shopName }</p>
+                <div>  <p><span style={{ fontWeight: "bold", marginBottom: 0,padding:0,margin:0 }}>SomeOne </span>applied for vendorShip on the app shopname {""}{application.shopName }</p>
 
                   <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}>{application.contactInfo.email}</p>
                   <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}>{application.vendorDetails.cnic}</p>
